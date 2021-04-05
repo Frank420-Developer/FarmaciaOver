@@ -1,0 +1,293 @@
+:root{
+    --negro: #000;
+    --blanco: #fff;
+    --verde: #40FF00;
+}
+/*------------------------GLOGALES-----------------------*/
+html{
+    font-size: 62.5%;
+    box-sizing: border-box; /* HACK PARA BOX MODEL */
+}
+*, *:after, *:before{
+    box-sizing: inherit;
+}
+body{
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+h1{
+    margin: 1rem ;
+}
+h2{
+    margin: 3rem 0;
+}
+a{
+    text-decoration: none;
+    color:var(--negro); 
+}
+
+
+/*------------------------UTILIDADES-----------------------*/
+.centrar-texto{
+    text-align: center;
+}
+.border-bottom{
+    border-bottom: 1px solid gray;
+}
+/*------------------------LOGIN----------------------------*/
+.banner-login{
+    background-image: url(../img/login.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.login{
+    width: 100%;
+    padding:2rem;
+    margin: auto;
+    margin-top: 10rem;
+}
+.contenedor{
+    width: 100%;
+    max-width: 80rem;
+    margin: auto;
+    position: relative;
+}
+.caja__trasera{
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(1rem);
+    background-color: rgba(0, 128, 255, .5);
+}
+.caja__trasera div{
+    margin: 10rem 4rem;
+    color: var(--blanco);
+    transition: all 500ms;
+}
+.caja__trasera div p,
+.caja__trasera div button{
+    margin-top: 3rem;
+}
+.caja__trasera div h3{
+    font-weight: 400;
+    font-size: 2.6rem;
+}
+.caja__trasera button{
+    padding: 1rem 4rem;
+    border: 1px solid var(--blanco);
+    background: transparent;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--blanco);
+    outline: none;
+    transition: all 300ms;
+}
+.caja__trasera button:hover{
+    background: var(--blanco);
+    color: #46a2fd;
+}
+.contenedor__login-register{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 38rem;
+    position: relative;
+    top: -20rem;
+    left: 1rem;
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+.contenedor__login-register form{
+    width: 100%;
+    padding: 8rem 2rem;
+    background: var(--blanco);
+    position: absolute;
+    border-radius: 2rem;
+}
+.contenedor__login-register form h2{
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #46a2fd;
+}
+.contenedor__login-register form input{
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem;
+    border: none;
+    background: #f2f2f2;
+    font-size: 1.5rem;
+    outline: none;
+}
+.contenedor__login-register form button{
+    padding: 1rem 4rem;
+    margin-top: 4rem;
+    border: none;
+    font-size: 1.5rem;
+    background: #46a2fd;
+    color: var(--blanco);
+    cursor: pointer;
+    outline: none;
+}
+.formulario__login{
+    opacity: 1;
+    display: block;
+}
+.formulario__register{
+    display: none;
+}
+@media screen and (max-width:768px) {
+   .login{
+       margin-top: 5rem;
+   }
+   .caja__trasera{
+       max-width: 35rem;
+       height: 30rem;
+       flex-direction: column;
+       margin:auto;
+   }
+   .caja__trasera div{
+       margin: 0;
+       position: absolute;
+   }
+   .contenedor__login-register{
+       top: -1rem;
+       left: -.5rem;
+       margin: auto;
+   }
+   .contenedor__login-register form{
+       position: relative;
+   }
+}
+
+/*--------------------------NAVEGACION---------------------*/
+.contenedor-nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+.contenedor-nav h1{
+    width: 50%;
+    background-color: var(--verde);
+    padding: 1rem;
+    margin: 0;
+}
+.navegacion-principal{
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: yellow;
+    
+}
+.navegacion-principal a:hover{
+    color: var(--verde);
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+
+}
+
+/*--------------------------BANNER------------------------------*/
+.fondo{
+    display: block;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+    background-image: url(../img/farmacia.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.contenido-banner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/*-------------------------SERVICIOS---------------------*/
+.contenedor-servicios{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    margin: 1rem auto;
+    padding: 2rem;
+    box-shadow: 0px 0px 24px 10px rgba(0,0,0,0.81);
+    -webkit-box-shadow: 0px 0px 24px 10px rgba(0,0,0,0.81);
+    -moz-box-shadow: 0px 0px 24px 10px rgba(0,0,0,0.81);
+    align-items: center;
+    gap: 2rem;
+}
+@media (min-width: 468px) and (max-width: 768px){
+   .contenedor-servicios{
+       display: grid;
+       grid-template-columns: repeat(2, 1fr);
+   }
+}
+@media (min-width: 769px) {
+    .contenedor-servicios{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.servicio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 128, 0, 0.685);
+    padding: 1rem;
+    border-radius: 50%;
+    width:18rem;
+    height:18rem;
+    margin: auto;
+    transition: all 300ms;
+}
+@media (min-width: 768px) and (max-width: 1068px) {
+   .servicio{
+       width: 22rem;
+       height: 22rem;
+   }
+}
+@media (min-width: 1069px){
+   .servicio{
+       width: 30rem;
+       height: 30rem;
+   }
+}
+
+/*FOOTER*/
+.footer{
+    max-height: 120rem;
+    width: 100%;
+    background-color: var(--negro);
+    color: var(--blanco);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem 3rem;
+}
+.footer__bloque{
+    display: block;
+    line-height: 1.5;
+}
+@media (min-width: 768px) {
+   .footer{
+       grid-template-columns: repeat(3, 1fr);
+   }
+}
+@media (min-width: 428px) and (max-width: 767px) {
+    .footer{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
