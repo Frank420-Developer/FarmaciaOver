@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include 'components/header.php' ?>
+    <?php include './views/modules/components/header.php' ?>
 </head>
 <body class="banner-login">
     <main class="login">
@@ -28,7 +28,7 @@
             <!--Formularios-->
             <div class="contenedor__login-register">
                 <!--Formulario Log-In-->
-                <form action="<?= $data['host']?>/index/iniciarSesión" method="POST" class="formulario__login">
+                <form action="<?= $data['host']?>/login/inicio_sesion" method="POST" class="formulario__login">
                     <h2>Iniciar Sesión</h2>
                     <input type="email" placeholder="correo electronico" name="correo">
                     <input type="password" placeholder="*********" name="password">
@@ -36,7 +36,7 @@
                 </form>
 
                 <!--Formulario Register-->
-                <form action="<?= $data['host']?>/index/registro" method="POST" class="formulario__register">
+                <form action="<?= $data['host']?>/login/registro" method="POST" class="formulario__register">
                     <h2>Registrarse</h2>
                     <input type="text" placeholder="Nombre Completo" name="nombre">
                     <input type="email" placeholder="Correo Electornico" name="correo">
@@ -47,6 +47,6 @@
             </div>
         </div>
     </main>
-    <script src="../assets/js/script.js"></script>
+    <script src="./views/assets/js/script.js"></script>
 </body>
 </html>

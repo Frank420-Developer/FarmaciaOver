@@ -15,11 +15,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include 'components/header.php'; ?>
+    <?php include './views/modules/components/header.php'; ?>
 </head>
 <body>
     <header >
-        <?php include 'components/navegacion.php'; ?>
+        <?php include './views/modules/components/navegacion.php'; ?>
         <div class="banner fondo">
             <div class="contenido-banner">
                 
@@ -43,6 +43,6 @@
             </div>
         </div>
     </main>
-    <?php include 'components/footer.php'; ?>
+    <?php include './views/modules/components/footer.php'; ?>
 </body>
 </html>

@@ -1,42 +1,4 @@
-<?php
-    require_once './libs/conexion_bd.php';
-
-    Class RegistroPDO extends ConexionPDO{
-        private $nombre;
-        private $correo;
-        private $username;
-        private $contraseña;
-
-        function __construct($nom='', $email='', $user_name='',$pass=''){
-            parent::__construct();
-            $this->nombre = $nom;
-            $this->correo = $email;
-            $this->username = $user_name;
-            $this->contraseña = $pass;
-        }
-        public function obtener_usuarios(){
-            $this->conectar();
-            $state = $this->conexion->prepare("SELECT id_user, Nombre, Correo, Username FROM login");
-            $state->execute();
-            $result = $state->fetchAll(PDO::FETCH_ASSOC);
-            write_log(serialize($result));
-            return $result;
-        }
-        public function registrar_usuario(){
-            $this->conectar();
-            try {
-                $sql = "INSERT INTO login (Nombre, Correo, Username, Contraseña) 
-                VALUES('$this->nombre','$this->correo','$this->username','$this->contraseña')";
-                $this->$sql->exec();
-                write_log('Se realizo el insert de manera correcta');
-                $this->desconectar();
-                return true;
-            } catch (PDOException $e) {
-                $this->desconectar();
-                return false;
-            }
-        }
-    }
+<!-- 
     // $nombre = $_POST['nombre'];
     // $correo = $_POST['correo'];
     // $username = $_POST['username'];
@@ -93,4 +55,4 @@
     // }
 
     // mysqli_close($conexion);
-?>
+?> -->

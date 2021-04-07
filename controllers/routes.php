@@ -4,10 +4,11 @@
     class Routes{
         function __construct($host_name, $site_name){
             /*-------------------VISTAS-------------------- */
-            $routes["index"]='Index';
-            $routes["inicio"]='Inicio';
-            $routes["index/registro"]='processRegister';
-            $routes["index/iniciarSesión"]='processLogin';
+            $routes["login"]='Login';
+            $routes["dashboard"]='Dashboard';
+            $routes["login/registro"]='processRegister';
+            $routes["login/inicio_sesion"]='processLogin';
+            $routes['cerrar_sesion'] = "cerrarSesion";
 
 
     //Si no está vacía la variable $_GET['url'] la usamos para navegar

@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 require_once './libs/conexion_bd.php';
 
 Class IniciarPDO extends ConexionPDO{
@@ -10,19 +10,7 @@ Class IniciarPDO extends ConexionPDO{
         $this->correo = $email;
         $this->contraseña = $pass;
     }
-    public function iniciar_sesion(){
-        $this->conectar();
-        try {
-            $sql = "SELECT * FROM login WHERE (Correo='$this->correo') AND (Contraseña='$this->contraseña')";
-            $this->$sql->exec();
-            write_log('Se realizo el insert de manera correcta');
-            $this->desconectar();
-            return true;
-        } catch (PDOException $e) {
-            $this->desconectar();
-            return false;
-        }
-    }
+    
 }
 // $nombre = $_POST['nombre'];
 // $correo = $_POST['correo'];
@@ -106,4 +94,4 @@ Class IniciarPDO extends ConexionPDO{
     // }
     // // mysqli_close($conexion);
 
-?>
+?> -->
