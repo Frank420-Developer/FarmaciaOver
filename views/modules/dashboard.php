@@ -27,7 +27,7 @@
         </div>
     </header>
     <main>
-        <h2 class="centrar-texto">Servicios</h2>
+        <h2 class="centrar-texto">Services</h2>
         <div class="contenedor-servicios">
             <div class="servicio">
                 <h3>Venta de Medicamento</h3>
