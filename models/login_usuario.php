@@ -1,17 +1,17 @@
-<!-- <?php
-require_once './libs/conexion_bd.php';
+ <?php
+// require_once './libs/conexion_bd.php';
 
-Class IniciarPDO extends ConexionPDO{
-    private $correo;
-    private $contraseña;
+// Class IniciarPDO extends ConexionPDO{
+//     private $correo;
+//     private $contraseña;
 
-    function __construct($email='',$pass=''){
-        parent::__construct();
-        $this->correo = $email;
-        $this->contraseña = $pass;
-    }
+//     function __construct($email='',$pass=''){
+//         parent::__construct();
+//         $this->correo = $email;
+//         $this->contraseña = $pass;
+//     }
     
-}
+// }
 // $nombre = $_POST['nombre'];
 // $correo = $_POST['correo'];
 // $username = $_POST['username'];
@@ -94,4 +94,4 @@ Class IniciarPDO extends ConexionPDO{
     // }
     // // mysqli_close($conexion);
 
-?> -->
+?> 

@@ -29,38 +29,38 @@
         $this->conexion = null;
     }
   }
-    class MySQL_Object{
-        /* ...:: PROPIEDADES ::... */
-        Protected $servername;
-        Protected $username;
-        Protected $password;
-        Protected $dbname;
-        Protected $conexion;
+    // class MySQL_Object{
+    //     /* ...:: PROPIEDADES ::... */
+    //     Protected $servername;
+    //     Protected $username;
+    //     Protected $password;
+    //     Protected $dbname;
+    //     Protected $conexion;
     
-        /* ...:: MÉTODOS ::... */
-        // Constructor
-        function __construct() {
-          $this->servername = "localhost";   // Colocar aquí el nombre del servidor
-          $this->username = "Francisco Vera";     // Colocar aquí el nombre del usuario (De la base de datos)
-          $this->password = "";     // Colocar aquí la contraseña del usuario (De la base de datos)
-          $this->dbname = "farmacia over";
-        }
-        // Conectar a la BD
-        function conectar() {
-          $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-          // Check connection
-          if ($this->conn->connect_error) {
-            write_log("ERROR al conectar a la BD: '" . $this->conn->connect_error ."'");
-            die("Connection failed: " . $this->conn->connect_error);
-          }else{
-              write_log('conexion exitosa');
-          }
-        }
-        // Desconectar de la BD
-        function desconectar(){
-          write_log('se desconecto de la bd');
-          $this->conn->close();
-        }
-      }
+    //     /* ...:: MÉTODOS ::... */
+    //     // Constructor
+    //     function __construct() {
+    //       $this->servername = "localhost";   // Colocar aquí el nombre del servidor
+    //       $this->username = "Francisco Vera";     // Colocar aquí el nombre del usuario (De la base de datos)
+    //       $this->password = "";     // Colocar aquí la contraseña del usuario (De la base de datos)
+    //       $this->dbname = "farmacia over";
+    //     }
+    //     // Conectar a la BD
+    //     function conectar() {
+    //       $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+    //       // Check connection
+    //       if ($this->conn->connect_error) {
+    //         write_log("ERROR al conectar a la BD: '" . $this->conn->connect_error ."'");
+    //         die("Connection failed: " . $this->conn->connect_error);
+    //       }else{
+    //           write_log('conexion exitosa');
+    //       }
+    //     }
+    //     // Desconectar de la BD
+    //     function desconectar(){
+    //       write_log('se desconecto de la bd');
+    //       $this->conn->close();
+    //     }
+    //   }
  
 ?>

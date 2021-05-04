@@ -1,5 +1,5 @@
 <?php
-    require_once './libs/conexion_bd.php';
+    require_once 'libs/conexion_bd.php';
 
     Class UsuarioPDO extends ConexionPDO{
         private $nombre;
@@ -7,17 +7,17 @@
         private $user_name;
         private $contraseña;
 
-        function __construct($nom='', $email='', $userName='',$pass=''){
+        function __construct($nom='', $email='', $userName='',$contra=''){
             parent::__construct();
             
             $this->nombre = $nom;
             $this->correo = $email;
             $this->user_name = $userName;
-            $this->contraseña = $pass;
+            $this->contraseña = $contra;
         }
         public function obtener_usuarios(){
             $this->conectar();
-            $state = $this->conexion->prepare("SELECT id_user, Nombre, Correo, Username FROM login");
+            $state = $this->conexion->prepare("SELECT * FROM login");
             $state->execute();
             $result = $state->fetchAll(PDO::FETCH_ASSOC);
             write_log(serialize($result));
@@ -37,35 +37,55 @@
                 return false;
             }
         }
-        // public function cerrar_sesion(){
-        //     $host_name = "http://localhost/FarmaciaOVER";
-        //     // session_start();
-        //     // session_destroy();
-        //     header("location:" . $host_name . "/login");
-        // }
+
+        public function logear_usuario($email, $contra){
+            $this->conectar();
+            try {
+                $sql = "SELECT * FROM login WHERE Correo ='$email' and Contraseña='$contra'";
+                $query = $this->conexion->prepare($sql);
+                $query->execute();
+                write_log("correo: " . $email);
+                write_log("contra: " . $contra);
+                write_log("consulta: " . $sql);
+
+                if($query->rowCount() > 0){
+                    write_log('datos coinciden');
+                    return true;
+                }else{
+                    write_log('datos no coinciden');
+                    return false;
+                }
+
+                // $this->desconectar();
+                // return true;
+            } catch (PDOException $e) {
+                $this->desconectar();
+                return false;
+            }
+        }
         
     }
 
-    class UsuarioMySQL extends MySQL_Object{
-        public function iniciar_sesion($email, $contra){
-            $this->conectar();
-            try {
-                //---------------------------------CORREGIR---------------------------------//
-            $validar_login = mysqli_query($this->conn, "SELECT * FROM login WHERE (Correo='$email') AND (Contraseña='$contra')");
+    // class UsuarioMySQL extends MySQL_Object{
+    //     public function iniciar_sesion($email, $contra){
+    //         $this->conectar();
+    //         try {
+    //             //---------------------------------CORREGIR---------------------------------//
+    //         $validar_login = mysqli_query($this->conn, "SELECT * FROM login WHERE (Correo='$email') AND (Contraseña='$contra')");
 
-                if($validar_login > 0){
-                    write_log('login correcto ' . $email);
-                    $this->desconectar();
-                    return true;
-                }else{
-                    write_log('login incorrecto ' . $email);
-                    $this->desconectar();
-                    return false;
-                }
-            } catch (Exception $e) {
+    //             if($validar_login){
+    //                 write_log('login correcto ' . $email);
+    //                 $this->desconectar();
+    //                 return true;
+    //             }else{
+    //                 write_log('login incorrecto ' . $email);
+    //                 $this->desconectar();
+    //                 return false;
+    //             }
+    //         } catch (Exception $e) {
 
-            }
-                //----------------------------------CORREGIR-----------------------// 
-        }
-    }
+    //         }
+    //             //----------------------------------CORREGIR-----------------------// 
+    //     }
+    // }
 ?>
