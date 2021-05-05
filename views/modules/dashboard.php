@@ -6,7 +6,7 @@
     //             alert("Porfavor inicia sesión");
     //         </script>
     //     ';
-    //     header("location: ../index.php");
+    //     header("location: " . $data['host'] . "/login");
     //     session_destroy();
     //     die();
     // }
@@ -51,17 +51,38 @@
                         </div>
                     </div>
                 </div><!--.row -->
-                <div class="container mt-4">
+                <div class="container mt-4 mx-0">
                     <div class="titulo">
                         <h2 class="text-center">Ultimas Ventas</h2>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </section><!--#page-content-wrapper-->
-            <?php include './views/modules/components/footer.php'; ?>
+            <!-- <?php include './views/modules/components/footer.php'; ?> -->
         </div>
     </div><!--.d-flex -->
 
     <?php include './views/modules/components/javascript.php'; ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.js" integrity="sha512-opXrgVcTHsEVdBUZqTPlW9S8+99hNbaHmXtAdXXc61OUU6gOII5ku/PzZFqexHXc3hnK8IrJKHo+T7O4GRIJcw==" crossorigin="anonymous"></script>
     
 </body>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'doughnut',
+            data:{
+            datasets: [{
+                data: [60,18,10, 8, 4],
+                backgroundColor: ['#42a5f5', 'red', 'green','blue','violet'],
+                label: 'Comparacion de navegadores'}],
+                labels: ['Google Chrome','Safari','Edge','Firefox','Opera']},
+            options: {responsive: true}
+        });
+    </script>
+
 </html>

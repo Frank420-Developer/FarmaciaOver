@@ -4,9 +4,6 @@
       private $id_user;
       private $user;
       private $user_name;
-      private $user_lastname;
-      private $groups;
-      private $status;
       private $token;
 
       public function __construct(){

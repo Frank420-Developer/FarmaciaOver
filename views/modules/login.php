@@ -1,7 +1,8 @@
 <?php
-    // session_start();
+    
     // if(isset($_SESSION['usuario'])){
-    //     header("location: views/inicio.php");
+	// 	session_start();
+    //     header("location: " . $data['host'] . "/dashboard");
     // }
 ?>
 
@@ -38,7 +39,7 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input type="password" class="input" name="pass" required><i class="contra fas fa-eye-slash mt-4 d-flex justify-content-end"></i>
+           		    	<input type="password" class="input" name="pass" required id="contra"><i class="fas fa-eye-slash mt-4 d-flex justify-content-end" id="eye"></i>
             	   </div>
             	</div>
 				<div class="d-flex justify-content-between mt-5">
@@ -56,5 +57,6 @@
     </div>
     </main>
     <script src="<?= $data['host']?>/views/assets/js/login.js"></script>
+	
 </body>
 </html>

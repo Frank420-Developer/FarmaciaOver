@@ -114,12 +114,13 @@
               if($sesion->validate_token($token)){
                   //SI NO SE RECIBE ID ES UN INSERT
                 if (empty($_POST['id_producto'])){
+                  $unidades = $_POST['unidad'];
                   $codigo = $_POST['codigo_producto'];  
                   $nombre = $_POST['nombre_producto'];
                   $precio = $_POST['precio'];
                   $descripcion = $_POST['descripcion'];
                   // Crea una instancia de InventarioPDO con los datos del formulario
-                  $producto = new InventarioPDO("0", $codigo, $nombre, $precio, $descripcion);
+                  $producto = new InventarioPDO("0",$unidades, $codigo, $nombre, $precio, $descripcion);
                   $producto_creado = $producto->crear_producto();  // Crea el producto con los datos que mandamos
                   // Verifica si se creó el producto
                   $sesion = new UserSession();
@@ -131,12 +132,13 @@
                 }else{
                   //Si se recibe un id_producto significa que es un update
                   $id_producto = $_POST['id_producto'];
+                  $unidades = $_POST['unidad_producto_editar'];
                   $codigo = $_POST['codigo_producto_editar'];
                   $nombre = $_POST['nombre_producto_editar'];
                   $precio = $_POST['precio_editar'];
                   $descripcion = $_POST['descripcion_editar'];
                   // Crea una instancia de InventarioPDO con los datos del formulario
-                  $producto = new InventarioPDO($id_producto, $codigo, $nombre, $precio, $descripcion);
+                  $producto = new InventarioPDO($id_producto, $unidades, $codigo, $nombre, $precio, $descripcion);
                   $producto_actualizado = $producto->actualizar_producto();  // Crea el productocon los datos que mandamos
                   // Verifica si se actualizó el producto
                   $sesion = new UserSession();

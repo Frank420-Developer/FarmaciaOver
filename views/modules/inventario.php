@@ -55,7 +55,7 @@
                 <table class="table table-bordered table-dark table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">Id</th>
+                            <th class="text-center">Unidades</th>
                             <th class="text-center">Código</th>
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Precio</th>
@@ -66,7 +66,7 @@
                         <?php
                         foreach($data['inventario'] as $inventario){
                             $html_row =         ""."\n\t\t\t\t\t\t\t<tr>\n".
-                                                "\t\t\t\t\t\t\t\t<th class='text-center'>". $inventario['id'] ."</th>\n".
+                                                "\t\t\t\t\t\t\t\t<th class='text-center'>". $inventario['unidades'] ."</th>\n".
                                                 "\t\t\t\t\t\t\t\t<td class='text-center'>". $inventario['codigo'] ."</td>\n".
                                                 "\t\t\t\t\t\t\t\t<td class='text-center'>". $inventario['nombre'] ."</td>\n".
                                                 "\t\t\t\t\t\t\t\t<td class='text-center'>". $inventario['precio'] ."</td>\n".
@@ -112,8 +112,14 @@
                 <div style="display:none;">
                     <input type="hidden" name="token" value="<?= $data['token'] ?>">
                 </div>
+                <div class="col-md-12">
+                    <label for="unidad">Unidades: </label>
+                    <div class="col-md-12">
+                      <input type="text" class="custom-control w-100 mx-0 mb-3" name="unidad" placeholder="Escriba la cantidad de unidades del producto" autocomplete="off" required>
+                    </div>
+                </div>
                 <div class="col-md-12 col-sm-12">
-                  <label for="codigo_sucursal">Código: </label>
+                  <label for="codigo_producto">Código: </label>
                   <div class="col-md-12">
                     <input type="text" class="custom-control mx-0 w-100 mb-3" name="codigo_producto" placeholder="Escriba el código del producto" required>
                   </div>
@@ -156,11 +162,17 @@
             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
           </div>
           <form method="POST" action="<?= $data['host'] ?>/inventario/procesar">
-            <input type="hidden" name="id_producto">
+            <input type="text" name="id_producto">
             <div class="modal-body">
                 <div class="col-md-12 row">
                   <div style="display:none;">
                     <input type="hidden" name="token" value="<?= $data['token'] ?>">
+                  </div>
+                  <div class="col-md-12">
+                    <label for="unidad_producto_editar">Unidades: </label>
+                    <div class="col-md-12">
+                      <input type="text" class="custom-control" name="unidad_producto_editar" placeholder="Escriba la cantidad de unidades del producto" autocomplete="off" required>
+                    </div>
                   </div>
                   <div class="col-md-12">
                     <label for="codigo_producto_editar">Código: </label>

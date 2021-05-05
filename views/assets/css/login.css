@@ -127,7 +127,7 @@ form{
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: 100%;
+	width: 90%;
 	height: 100%;
 	border: none;
 	outline: none;
@@ -177,7 +177,7 @@ a:hover{
 	background-position: right;
 	color: #fff;
 }
-.contra{
+#eye{
 	cursor: pointer;
 }
 
