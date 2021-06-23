@@ -1,0 +1,140 @@
+:root{
+    --negro: #000;
+    --blanco: #fff;
+    --verde: #40FF00;
+}
+/*------------------------GLOGALES-----------------------*/
+html{
+    font-size: 62.5%;
+    box-sizing: border-box; /* HACK PARA BOX MODEL */
+}
+*, *:after, *:before{
+    box-sizing: inherit;
+}
+body{
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    background-color: rgb(236, 240, 241);
+}
+/*SECCION ACTIVA*/
+.fa-caret-right{
+    font-size: 3rem;
+    margin-left: 6rem;
+    color: #3703c7;
+}
+
+
+/*--------------------------NAVEGACION---------------------*/
+.fondo-nav{
+    background-color:#007bff !important;
+}
+.nav-link{
+    color: #000 !important;
+}
+.nav-link:hover{
+    color: rgba(0, 0, 0, .4) !important; 
+}
+.buscar{
+    border-radius: 5rem;
+    border-style: none;
+    padding-left: 2rem;
+}
+.navbar-collapse{
+    display: flex;
+}
+.buscar{
+    right: 0;
+    font-size: .8rem;
+    background-color: transparent;
+}
+.navegacion{
+    background-color: #fff  !important;
+}
+
+@media (min-width: 991px) {
+    .navegacion{
+        padding-left: 2rem;
+    }
+    .boton-sidebar{
+        margin-right: 10rem;
+    }
+}
+.dropdown{
+    margin-right: 7rem;
+}
+@media (max-width: 991px) {
+    .dropdown{
+        margin-right: 0;
+    }
+}
+/*SIDEBAR*/
+#sidebar-wrapper .menu{
+    width: 20rem;
+    color: var(--blanco);
+}
+#wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+    background-color: #03C71D !important;
+  min-height: 100vh;
+  margin-left: -22rem;
+  -webkit-transition: margin .8s ease-out;
+  -moz-transition: margin .8s ease-out;
+  -o-transition: margin .8s ease-out;
+  transition: margin .8s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+/* #sidebar-wrapper .list-group {
+  width: 15rem;
+}
+*/
+#page-content-wrapper {
+  min-width: 100%;
+
+} 
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+  
+  #page-content-wrapper {
+    min-width: 0;
+    max-width: 100%;
+    
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -22rem;
+  }
+  
+}
+
+/*------------CLIENTES-----------*/
+.cliente{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    border: 1px solid grey;
+}
+
+/*FOOTER*/
+#footer{
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+}
