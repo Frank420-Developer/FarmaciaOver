@@ -3,16 +3,18 @@
 
     Class InventarioPDO extends ConexionPDO{
         private $id_producto;
+        private $activo;
         private $unidades;
         private $codigo;
         private $nombre;
         private $precio;
         private $descripcion;
 
-        function __construct($product_id='', $unities='',$cod='',$nom='', $price='', $desc=''){
+        function __construct($product_id='', $act=0, $unities='',$cod='',$nom='', $price='', $desc=''){
             parent::__construct();
             
             $this->id_producto = $product_id;
+            $this->activo = $act;
             $this->unidades = $unities;
             $this->codigo = $cod;
             $this->nombre = $nom;
@@ -27,6 +29,15 @@
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $this->desconectar();
             write_log(serialize($result));
+            return $result;
+        }
+        public function get_productos_activos(){
+            $this->conectar();
+            $stmt = $this->conexion->prepare("SELECT * FROM inventario WHERE Activo = 1;");
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $this->desconectar();
+            write_log(serialize("P" .$result));
             return $result;
         }
         public function get_producto($product_id){
@@ -46,8 +57,8 @@
         public function crear_producto(){
             $this->conectar();
             try {
-                $sql = "INSERT INTO inventario (unidades, codigo, nombre, precio, descripcion) 
-                VALUES('$this->unidades','$this->codigo','$this->nombre','$this->precio','$this->descripcion')";
+                $sql = "INSERT INTO inventario (Activo, unidades, codigo, nombre, precio, descripcion) 
+                VALUES(1, '$this->unidades','$this->codigo','$this->nombre','$this->precio','$this->descripcion')";
                 $this->conexion->exec($sql);
                 write_log('Se realizo el insert del producto de manera correcta ');
                 $this->desconectar();
@@ -63,6 +74,7 @@
             $this->conectar();
             try {
                 $sql = "UPDATE inventario SET
+                Activo = '$this->activo',
                 unidades = '$this->unidades', 
                 codigo = '$this->codigo',
                 nombre = '$this->nombre',
@@ -85,10 +97,10 @@
             }
         }
 
-        public function borrar_producto(){
+        public function borrar_producto($id_producto){
             $this->conectar();
             try {
-                $sql = "DELETE FROM inventario WHERE id = '$this->id_producto'";
+                $sql = "DELETE FROM inventario WHERE id = '$id_producto'";
 
                 $stmt = $this->conexion->prepare($sql);
                 $stmt->execute();
@@ -102,6 +114,25 @@
                 write_log("SQL: " . $sql);
                 $this->desconectar();
                 return false;
+            }
+        }
+
+        public function cambiar_activo(){
+            $this->conectar();
+            try{
+                $sql = "UPDATE inventario SET Activo = '$this->activo'
+                        WHERE id = '$this->id_producto'";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->execute();
+                write_log("SQL: " . $sql);
+                write_log("Se actualizaron: " . $stmt->rowCount() . " registros de forma exitosa");
+                $this->desconectar();
+                return true;
+
+            }catch (PDOException $e){
+                write_log("Ocurrió un error al actualizar el campo Activo del Articulo\nError: ". $e->getMessage());
+                write_log("SQL: ". $sql);
+                $this->desconectar();
             }
         }
         

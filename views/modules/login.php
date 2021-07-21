@@ -21,7 +21,7 @@
 			<img src="<?= $data['host']?>/views/assets/img/logo.svg">
 		</div>
 		<div class="login-content">
-			<form action="<?= $data['host']?>/login/inicio_sesion" method="POST">
+			<form action="<?= $data['host']?>/login/inicio_sesion" method="POST" id="formulario">
 				<img src="<?= $data['host']?>/views/assets/img/log.svg">
 				<h2 class="title">Farmacia OVER</h2>
 				<div class="input-div one">
@@ -29,8 +29,9 @@
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
-           		   		<h5>Correo</h5>
-           		   		<input type="text" class="input" name="correo" required>
+           		   		<h5>Correo o Nombre de usuario</h5>
+           		   		<input type="text" class="input" id="correo" name="correo">
+						
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -39,7 +40,11 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input type="password" class="input" name="pass" required id="contra"><i class="fas fa-eye-slash mt-4 d-flex justify-content-end" id="eye"></i>
+           		    	<input id="contra" type="password" id="password" class="input" name="pass">
+						
+						<div class="d-flex justify-content-end">
+							<button type="button" class="mt-4 d-flex" style="background-color: transparent; border:none;" onclick="verContra();"><i id="ojo" class="fas fa-eye-slash"></i></button>
+						</div>
             	   </div>
             	</div>
 				<div class="d-flex justify-content-between mt-5">

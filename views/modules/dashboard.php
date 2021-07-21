@@ -30,7 +30,7 @@
         <div class="w-100">
             <?php include './views/modules/components/navegacion.php'; ?>
             <section class="m-2" id="page-content-wrapper">
-                <div class="row mx-1 my-4 nav-tabs pb-3">
+                <div class="row mx-1 my-4 nav-tabs pb-3"><!-- row-->
                     <div class="col col-lg-4 col-sm-12 mb-3">
                         <div class="card bg-primary px-3 py-4 text-center">    
                             <i class="fas fa-shopping-bag fa-2x pb-3"></i>
@@ -53,7 +53,7 @@
                 </div><!--.row -->
                 <div class="container mt-4 mx-0">
                     <div class="titulo">
-                        <h2 class="text-center">Ultimas Ventas</h2>
+                        <h2 class="text-center">Productos Disponibles</h2>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
@@ -71,18 +71,24 @@
     
 </body>
 
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'doughnut',
-            data:{
-            datasets: [{
-                data: [60,18,10, 8, 4],
-                backgroundColor: ['#42a5f5', 'red', 'green','blue','violet'],
-                label: 'Comparacion de navegadores'}],
-                labels: ['Google Chrome','Safari','Edge','Firefox','Opera']},
-            options: {responsive: true}
-        });
-    </script>
+   
+        <?php foreach($data['inventario'] as $inventario){
+                            $datos = $inventario['unidades'];
+                            echo '  <script>
+                                        var ctx = document.getElementById("myChart").getContext("2d");
+                                        var chart = new Chart(ctx, {
+                                        type: "doughnut",
+                                            data:{
+                                                datasets: [{
+                                                    data: [0,2,3,4,5],
+                                                    backgroundColor: ["#42a5f5", "red", "green","blue","violet"],
+                                                    label: "Comparacion de navegadores"}],
+                                                    labels: ["Google Chrome","Safari","Edge","Firefox","Opera"]},
+                                            options: {responsive: true}
+                                    });
+                                    </script>';
+                        }?>
+        
+   
 
 </html>

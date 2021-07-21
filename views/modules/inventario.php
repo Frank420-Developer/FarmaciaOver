@@ -16,6 +16,7 @@
 <html>
 <head>
     <?php include './views/modules/components/header.php'; ?>
+    <link rel="stylesheet" href="<?= $data['host']?>/views/assets/css/clientes.css">
     <script>
       function activa(){
       const seccion = document.querySelector('.inventario');
@@ -25,17 +26,7 @@
     </script>
 </head>
 <body onload="activa()">
-    <header >
-      
-        
-        <!-- <section id="inicio" class="text-center">
-            <div class="jumbotron pb-5">
-                <h1 class="display-4">Distribuidora de Medicamento</h1>
-                <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo quo sit necessitatibus sapiente tempora deserunt labore, quos magnam, rerum, a nemo. Alias ad dignissimos sequi perferendis itaque eligendi hic nam!</p>
-                <button class="btn btn-primary btn-lg">Contactanos</button>
-            </div>
-        </section>   -->
-    </header>
+    
   <main>
     <div class="d-flex" id="wrapper">
       <?php include './views/modules/components/menuLateral.php'; ?>
@@ -51,46 +42,69 @@
             <!--  ..:: MENSAJES/NOTIFICACIONES ::..-->
             <?php include './views/modules/components/notifications.php' ?>
 
-            <div class="table-responsive">
-                <table class="table table-bordered table-dark table-hover">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Unidades</th>
-                            <th class="text-center">Código</th>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center">Precio</th>
-                            <!-- <th class="text-center">Descripción</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
+            
                         <?php
+                        if($data['inventario'] == null){
+                          print(" <div class='img_vacia'>
+                                    <img class='m-auto w-100' src='".$data['host']."/views/assets/img/inventario_vacio.svg'>
+                                    <h3 class='text-center pt-4' style='font-size:3rem; margin-top:-50%; font-weight:bold;'>Inventario Vacio</h3>
+                                  </div>");
+                        }else{
+                        
                         foreach($data['inventario'] as $inventario){
-                            $html_row =         ""."\n\t\t\t\t\t\t\t<tr>\n".
-                                                "\t\t\t\t\t\t\t\t<th class='text-center'>". $inventario['unidades'] ."</th>\n".
-                                                "\t\t\t\t\t\t\t\t<td class='text-center'>". $inventario['codigo'] ."</td>\n".
-                                                "\t\t\t\t\t\t\t\t<td class='text-center'>". $inventario['nombre'] ."</td>\n".
-                                                "\t\t\t\t\t\t\t\t<td class='text-center'>". $inventario['precio'] ."</td>\n".
-                                                // "\t\t\t\t\t\t\t\t<td class='text-center'>". $inventario['descripcion'] ."</td>\n".
-                                                "\t\t\t\t\t\t\t\t<td>\n".
-                                                  "\t\t\t\t\t\t\t\t\t<div class='btn-group' role='group' aria-label='Button group with nested dropdown' style='width:100%;'>\n".
-                                                    "\t\t\t\t\t\t\t\t\t\t<button id='btnGroupDrop1' type='button' class='btn btn-info btn_options btn-lg text-center' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>\n".
-                                                      "\t\t\t\t\t\t\t\t\t\t\t<i class='fa fa-cog fa-lg icon_btn_options'></i>\n".
-                                                    "\t\t\t\t\t\t\t\t\t\t</button>\n".
-                                                    "\t\t\t\t\t\t\t\t\t\t<div class='dropdown-menu' aria-labelledby='btnGroupDrop1'>\n".
-                                                      "\t\t\t\t\t\t\t\t\t\t\t<a class='dropdown-item h4' href='#' data-toggle='modal' data-target='#modal_editar_producto' onclick='carga_datos_producto(". $inventario['id'] .")'> <i class='fa fa-edit'></i> Editar Producto</a>\n".
-                                                      "\t\t\t\t\t\t\t\t\t\t\t<a class='dropdown-item h4' href='#' data-toggle='modal' data-target='#modal_eliminar_producto' onclick='carga_datos_producto(". $inventario['id'] .")'> <i class='fa fa-trash'></i> Eliminar producto</a>\n".
-                                                    "\t\t\t\t\t\t\t\t\t\t</div>\n".
-                                                  "\t\t\t\t\t\t\t\t\t</div>\n".
-                                                "\t\t\t\t\t\t\t\t</td>\n".
-                                              "\t\t\t\t\t\t\t\t</tr>\n";
-                                  echo $html_row;  
+                            $icon=""; $icon_option=""; $label_action="";
+                            if($inventario['Activo'] == 1){
+                              $icon = "<i class='fas fa-toggle-on color_green icon_status'></i>";
+                              $icon_option = "<i class='fas fa-toggle-off color_red'></i>";
+                              $label_action = " Desactivar";
+                            }else{
+                              $icon = "<i class='fas fa-toggle-off color_red icon_status'></i>";
+                              $icon_option = "<i class='fas fa-toggle-on color_green'></i>";
+                              $label_action = " Activar";
+                            }
+                            print("<div class='table-responsive pt-4'>
+                            <table class='table table-bordered table-dark table-hover'>
+                              <thead>
+                                <tr>
+                                    <th class='text-center'>".$label_action."</th>
+                                    <th class='text-center'>Unidades</th>
+                                    <th class='text-center'>Código</th>
+                                    <th class='text-center'>Nombre</th>
+                                    <th class='text-center'>Precio</th>
+                                </tr>
+                              </thead>
+                              <tbody class='t-body'>");
+                          print(" <tr>
+                                    <td class='text-center'><a href='". $data['host']."/inventario/switch_active/".$inventario['id']."/".$inventario['Activo']."'>". $icon ."</a></td>
+                                    <td class='text-center'>". $inventario['unidades'] ."</td>
+                                    <td class='text-center'>". $inventario['codigo'] ."</td>
+                                    <td class='text-center'>". $inventario['nombre'] ."</td>
+                                    <td class='text-center'>". $inventario['precio'] ."</td>
+                                    <td class='text-center'>
+                                      <div class='btn-group' role='group' aria-label='Button group with nested dropdown' style='width:100%;'>
+                                          <button id='btnGroupDrop1' type='button' class='btn btn-info btn_options btn-lg text-center' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                            <i class='fa fa-cog fa-lg icon_btn_options'></i>
+                                          </button>
+                                          <div class='dropdown-menu p-3' aria-labelledby='btnGroupDrop1'>
+
+                                            <a class='dropdown-item h3' href='#' data-toggle='modal' data-target='#modal_editar_producto' onclick='carga_datos_producto(". $inventario['id'] .")'> <i class='fa fa-edit'></i> Editar Producto</a>
+
+                                            <div class='dropdown-divider'></div>
+
+                                            <a class='dropdown-item h3' style='color:red;' href='#' data-toggle='modal' data-target='#modal_eliminar_producto' onclick='borra_datos_producto(". $inventario['id'] .")'> <i class='fa fa-trash'></i> Eliminar producto</a>
+
+                                          </div>
+                                      </div>
+                                    </td>
+                                  </tr>"); 
+                          } 
                         }
                         ?>
                     </tbody>
                 </table>
             </div>
         </section>
-      <?php include './views/modules/components/footer.php'; ?>
+      <!-- <?php include './views/modules/components/footer.php'; ?> -->
       </div>
     </div>
   </main>
@@ -106,7 +120,7 @@
             <h4 class="modal-title"> <i class="fa fa-plus"></i> Alta de Producto</h4>
             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
           </div>
-          <form class="form-inline" method="POST" action="<?= $data['host'] ?>/inventario/procesar">
+          <form method="POST" action="<?= $data['host'] ?>/inventario/procesar">
             <div class="modal-body">
               <div class="col-md-12 row">
                 <div style="display:none;">
@@ -155,14 +169,15 @@
 
     <!-- ..:: Modal Editar Producto ::.. -->
     <div class="modal fade" id="modal_editar_producto">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-md">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title"> <i class="fa fa-edit"></i> Editar Producto</h4>
             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
           </div>
           <form method="POST" action="<?= $data['host'] ?>/inventario/procesar">
-            <input type="text" name="id_producto">
+            <input type="hidden" name="id_producto">
+            <input type="hidden" name="activo">
             <div class="modal-body">
                 <div class="col-md-12 row">
                   <div style="display:none;">
@@ -171,31 +186,31 @@
                   <div class="col-md-12">
                     <label for="unidad_producto_editar">Unidades: </label>
                     <div class="col-md-12">
-                      <input type="text" class="custom-control" name="unidad_producto_editar" placeholder="Escriba la cantidad de unidades del producto" autocomplete="off" required>
+                      <input type="text" class="custom-control mx-0 w-100 mb-3" name="unidad_producto_editar" placeholder="Escriba la cantidad de unidades del producto" autocomplete="off" required>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <label for="codigo_producto_editar">Código: </label>
                     <div class="col-md-12">
-                      <input type="text" class="custom-control" name="codigo_producto_editar" placeholder="Escriba el código del producto" autocomplete="off" required>
+                      <input type="text" class="custom-control mx-0 w-100 mb-3" name="codigo_producto_editar" placeholder="Escriba el código del producto" autocomplete="off" required>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <label for="nombre_producto_editar">Nombre: </label>
                     <div class="col-md-12">
-                      <input type="text" class="custom-control" name="nombre_producto_editar" placeholder="Escriba el nombre del producto" autocomplete="off" required>
+                      <input type="text" class="custom-control mx-0 w-100 mb-3" name="nombre_producto_editar" placeholder="Escriba el nombre del producto" autocomplete="off" required>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <label for="precio_editar">Precio: </label>
                     <div class="col-md-12">
-                      <input type="text" class="custom-control" name="precio_editar" placeholder="Escriba el precio del producto" autocomplete="off" required>
+                      <input type="text" class="custom-control mx-0 w-100 mb-3" name="precio_editar" placeholder="Escriba el precio del producto" autocomplete="off" required>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <label for="descripcion_editar">Descripción: </label>
                     <div class="col-md-12">
-                      <input type="text" class="custom-control" name="descripcion_editar" placeholder="Descripcion del Producto" autocomplete="off" required>
+                      <input type="text" class="custom-control mx-0 w-100 mb-3" name="descripcion_editar" placeholder="Descripcion del Producto" autocomplete="off" required>
                     </div>
                   </div>
                 </div>
@@ -211,7 +226,7 @@
 
     <!-- ..:: Modal Eliminar Producto ::.. -->
     <div class="modal fade" id="modal_eliminar_producto">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-lg modal-md">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title"> <i class="fa fa-trash"></i> Eliminar Producto</h4>
@@ -225,15 +240,15 @@
                     <input type="hidden" name="token" value="<?= $data['token'] ?>">
                   </div>
                   <div class="col-md-12">
-                    <label for="codigo_producto_editar">Código: </label>
+                    <label for="codigo_producto_eliminar">Código: </label>
                     <div class="col-md-12">
-                      <input type="text" class="custom-control" name="codigo_producto_editar" placeholder="Escriba el código del producto" autocomplete="off" disabled>
+                      <input type="text" class="custom-control" name="codigo_producto_eliminar" placeholder="Escriba el código del producto" autocomplete="off" disabled>
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <label for="nombre_producto_editar">Nombre: </label>
+                    <label for="nombre_producto_eliminar">Nombre: </label>
                     <div class="col-md-12">
-                      <input type="text" class="custom-control" name="nombre_producto_editar" placeholder="Escriba el nombre del producto" autocomplete="off" required>
+                      <input type="text" class="custom-control" name="nombre_producto_eliminar" placeholder="Escriba el nombre del producto" autocomplete="off" disabled>
                     </div>
                   </div>
                 </div>

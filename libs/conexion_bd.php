@@ -9,7 +9,7 @@
     function __construct(){
        //------ASIGNAMOS LOS VALORES A LAS VARIABLES PARA REALIZAR CONEXION PDO A LA BASE DE DATOS----//
         $this->servername = 'localhost';
-        $this->username = 'Francisco Vera';
+        $this->username = 'root';
         $this->password = '';
         $this->dbname = 'farmacia over';
     }

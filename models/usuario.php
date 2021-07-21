@@ -44,6 +44,7 @@
                 $sql = "SELECT * FROM login WHERE Correo ='$email' and Contraseña='$contra'";
                 $query = $this->conexion->prepare($sql);
                 $query->execute();
+
                 write_log("correo: " . $email);
                 write_log("contra: " . $contra);
                 write_log("consulta: " . $sql);

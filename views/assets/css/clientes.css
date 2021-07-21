@@ -1,0 +1,14 @@
+.img_vacia{
+    width: 50%;
+    margin: auto;
+    padding-top: 10rem;
+}
+.color_green{
+    color: #009900;
+}
+.color_red{
+    color: #ff0000;
+}
+.icon_status{
+    font-size: 3rem;
+}

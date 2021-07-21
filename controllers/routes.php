@@ -13,10 +13,13 @@
             $routes['cerrar_sesion'] = "cerrarSesion";
             $routes['inventario'] ='Inventario';
             $routes['inventario/procesar'] = 'processProducto';
-            $routes['inventario/eliminar'] = 'processEliminar';
+            $routes['inventario/eliminar'] = 'processEliminarProducto';
+            $routes['inventario/switch_active/_data_/_data_'] = 'InventarioSwitchActive';
             $routes['ventas'] = 'Ventas';
             $routes['clientes'] = 'Clientes';
             $routes['clientes/procesar'] = 'processCliente';
+            $routes['clientes/eliminar'] = 'processEliminarCliente';
+            $routes['clientes/switch_active/_data_/_data_'] = 'ClienteSwitchActive';
 
             /*----------------------API´S------------------------*/
             $routes["API/stock/get_producto/_data_"]="InventarioAPI/get_producto";

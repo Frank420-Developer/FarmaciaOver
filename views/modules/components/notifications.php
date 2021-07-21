@@ -44,6 +44,20 @@
               <button type='button' class='close' data-dismiss='alert' ><i class='fa fa-times'></i></button><strong>". $strong . "</strong> ". $notification['msg'] ."
             </div>
           ");
+
+    // print(" <div class='". $class_notification ."'>
+    //           <div class='modal fade' id='modal_cliente_registrado'>
+    //             <div class='modal-dialog modal-lg'>
+    //               <div class='modal-content'>
+    //                 <div class='modal-header'>
+    //                   <h4 class='modal-title'><i class='fas fa-check'></i>h4>
+    //                   <button type='button' class='close' data-dismiss='modal' ><i class='fas fa-times'></i></button><strong>". $strong . "</strong> ". $notification['msg'] ."
+    //                 </div>
+    //               </div>
+    //             </div>
+    //           </div>
+    //         s</div>
+    //       ");
   }
 
 

@@ -35,7 +35,7 @@
 
             </main>
 
-            <?php include './views/modules/components/footer.php'; ?>
+            <!-- <?php include './views/modules/components/footer.php'; ?> -->
         </div>
     </div>    
     

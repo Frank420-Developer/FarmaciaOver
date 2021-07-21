@@ -1,3 +1,5 @@
+// LOGIN INTERCTIVO
+
 const inputs = document.querySelectorAll(".input");
 
 
@@ -20,23 +22,23 @@ inputs.forEach(input => {
 });
 
 
-let x = document.querySelector('#contra');
-let eye = document.getElementById('eye');
+// VER CONTRASEÑA
 
-eye.addEventListener('click', function(e){
-	e.preventDefault();
-	verContra();
-});
+let x = document.querySelector('#contra');
+let ojo = document.querySelector('#ojo');
+	function verContra(){
+
+		if(x.type=== 'password'){
+			x.setAttribute("type", "text");
+			ojo.classList.remove("fa-eye-slash");
+			ojo.classList.add('fa-eye');
+		}else{
+			x.setAttribute("type", "password");
+			ojo.classList.remove("fa-eye");
+			ojo.classList.add("fa-eye-slash");
+		}
+	}
+
 	
 
-function verContra(){
-	if(x.ATTRIBUTE_NODE.type === "password"){
-		x.ATTRIBUTE_NODE.type === "text";
-		// eye.classList.remove('fas-eye-slash');
-		// eye.classList.add('fas-eye');
-	}else{
-		x.type === "password";
-		// eye.classList.remove('fas-eye');
-		// eye.classList.add('fas-eye-slash');
-	}
-}
+

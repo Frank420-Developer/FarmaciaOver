@@ -3,12 +3,14 @@
 
     Class ClientePDO extends ConexionPDO{
         private $id_cliente;
+        private $activo;
         private $nombre;
 
-        function __construct($client_id='', $nom=''){
+        function __construct($client_id='', $act=0, $nom=''){
             parent::__construct();
             
             $this->id_cliente = $client_id;
+            $this->activo = $act;
             $this->nombre = $nom;
             
         }
@@ -37,8 +39,8 @@
         public function registrar_cliente(){
             $this->conectar();
             try {
-                $sql = "INSERT INTO clientes(nombre) 
-                VALUES('$this->nombre')";
+                $sql = "INSERT INTO clientes(Activo, nombre) 
+                VALUES('$this->activo','$this->nombre')";
                 $this->conexion->exec($sql);
                 write_log('Se realizo el insert de manera correcta '. $this->nombre);
                 $this->desconectar();
@@ -53,6 +55,7 @@
             $this->conectar();
             try {
                 $sql = "UPDATE clientes SET 
+                Activo = '$this->activo',
                 nombre = '$this->nombre'
                 WHERE id = '$this->id_cliente'";
                 $this->conexion->exec($sql);
@@ -64,7 +67,40 @@
                 return false;
             }
         }
-        
+        public function eliminar_cliente($id_cliente){
+            $this->conectar();
+            try{
+                $sql = "DELETE FROM clientes WHERE id ='$id_cliente'";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->execute();
+               
+
+                write_log("Se eliminaron: " . $stmt->rowCount() . " registros de manera correcta");
+                $this->desconectar();
+                return true;
+            } catch (PDOException $e) {
+                $this->desconectar();
+                return false;
+            }
+        }
+
+        public function cambiar_activo(){
+            $this->conectar();
+            try{
+                $sql = "UPDATE clientes SET Activo = '$this->activo'
+                        WHERE id = '$this->id_cliente'";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->execute();
+                write_log("SQL: " . $sql);
+                write_log("Se actualizaron: " . $stmt->rowCount() . " registros de forma exitosa");
+                $this->desconectar();
+                return true;
+            }catch (PDOException $e) {
+                write_log("Ocurrió un error al actualizar el campo Activo del cliente\nError: ". $e->getMessage());
+                write_log("SQL: ". $sql);
+                $this->desconectar();
+            }
+        }
         
     }
 ?>
